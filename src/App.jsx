@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 const STORAGE_KEY = "ironlog_v1";
 function loadData() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = window.storage ? null : localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch { return null; }
 }
