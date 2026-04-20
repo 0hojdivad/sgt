@@ -1,16 +1,38 @@
 import { useState, useEffect, useRef } from "react";
 
 // ─── Persistent Storage ──────────────────────────────────────────────────────
-const STORAGE_KEY = "ironlog_v1";
-function loadData() {
+// ─── IndexedDB Storage (reliable on iOS PWA home screen) ─────────────────────
+const DB_NAME = "sgt_db";
+const DB_STORE = "data";
+const DB_KEY = "appstate";
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = e => e.target.result.createObjectStore(DB_STORE);
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+async function loadData() {
   try {
-    const raw = window.storage ? null : localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(DB_STORE, "readonly");
+      const req = tx.objectStore(DB_STORE).get(DB_KEY);
+      req.onsuccess = e => resolve(e.target.result || null);
+      req.onerror = () => resolve(null);
+    });
   } catch { return null; }
 }
 
-function saveData(data) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+async function saveData(data) {
+  try {
+    const db = await openDB();
+    const tx = db.transaction(DB_STORE, "readwrite");
+    tx.objectStore(DB_STORE).put(data, DB_KEY);
+  } catch {}
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -298,6 +320,68 @@ const S = {
     letterSpacing: "0.1em",
   },
 };
+
+// ─── RollingSelector ──────────────────────────────────────────────────────────────────────────────
+function RollingSelector({ value, onChange, step = 1, min = 0, placeholder = "0" }) {
+  const num = parseFloat(value) || 0;
+  const hasValue = value !== "" && value !== undefined && value !== null;
+
+  const startYRef = useRef(null);
+  const accRef = useRef(0);
+
+  function snap(raw) {
+    const clamped = Math.max(min, raw);
+    return Math.round(Math.round(clamped / step) * step * 100) / 100;
+  }
+  function decrement() { onChange(String(snap(num - step))); }
+  function increment() { onChange(String(snap(num + step))); }
+
+  function onTouchStart(e) {
+    startYRef.current = e.touches[0].clientY;
+    accRef.current = 0;
+  }
+  function onTouchMove(e) {
+    e.preventDefault();
+    const dy = startYRef.current - e.touches[0].clientY;
+    accRef.current += dy;
+    startYRef.current = e.touches[0].clientY;
+    const threshold = 16;
+    if (accRef.current > threshold) { accRef.current = 0; increment(); }
+    else if (accRef.current < -threshold) { accRef.current = 0; decrement(); }
+  }
+
+  const prevVal = hasValue ? snap(num - step) : null;
+  const nextVal = hasValue ? snap(num + step) : null;
+
+  return (
+    <div
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        userSelect: "none", WebkitUserSelect: "none", touchAction: "none",
+      }}
+    >
+      <div onClick={increment} style={{ color: "#3a3a3a", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▲</div>
+      <div style={{ fontSize: "0.7rem", fontWeight: 700, fontFamily: "inherit", color: "#2a2a2a", lineHeight: 1, padding: "0.1rem 0", minHeight: "0.9rem", textAlign: "center" }}>
+        {prevVal !== null ? prevVal : ""}
+      </div>
+      <div
+        style={{
+          background: "#1a1a1a", border: "1px solid #ff4d1c55", borderRadius: 3,
+          padding: "0.4rem 0.5rem", fontSize: "1rem", fontWeight: 700, fontFamily: "inherit",
+          color: hasValue ? "#e8e0d0" : "#333", minWidth: "3rem", textAlign: "center", lineHeight: 1.2,
+        }}
+      >
+        {hasValue ? num : placeholder}
+      </div>
+      <div style={{ fontSize: "0.7rem", fontWeight: 700, fontFamily: "inherit", color: "#2a2a2a", lineHeight: 1, padding: "0.1rem 0", minHeight: "0.9rem", textAlign: "center" }}>
+        {nextVal !== null ? nextVal : ""}
+      </div>
+      <div onClick={decrement} style={{ color: "#3a3a3a", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▼</div>
+    </div>
+  );
+}
 
 // ─── Components ───────────────────────────────────────────────────────────────
 
@@ -597,9 +681,11 @@ function LogTab({ data, setData }) {
   function addSet(exIdx) {
     const next = { ...data };
     const s = { ...next.activeSession };
-    s.exercises = s.exercises.map((ex, ei) =>
-      ei !== exIdx ? ex : { ...ex, sets: [...ex.sets, { weight: "", reps: "" }] }
-    );
+    s.exercises = s.exercises.map((ex, ei) => {
+      if (ei !== exIdx) return ex;
+      const prevWeight = ex.sets.length > 0 ? ex.sets[ex.sets.length - 1].weight : "";
+      return { ...ex, sets: [...ex.sets, { weight: prevWeight, reps: "" }] };
+    });
     next.activeSession = s;
     setData(next); saveData(next);
   }
@@ -692,15 +778,14 @@ function LogTab({ data, setData }) {
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "0.25rem" }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center", marginBottom: "0.25rem" }}>DURATION (min)</div>
-                    <input
-                      style={S.inputSmall}
-                      type="number"
-                      placeholder={suggestion ? suggestion.duration : "0"}
+                    <RollingSelector
                       value={ex.duration}
-                      onChange={e => {
+                      step={5}
+                      placeholder={suggestion ? String(suggestion.duration) : "0"}
+                      onChange={val => {
                         const next = { ...data };
                         const s = { ...next.activeSession };
-                        s.exercises = s.exercises.map((x, i) => i !== ei ? x : { ...x, duration: e.target.value });
+                        s.exercises = s.exercises.map((x, i) => i !== ei ? x : { ...x, duration: val });
                         next.activeSession = s;
                         setData(next); saveData(next);
                       }}
@@ -708,15 +793,14 @@ function LogTab({ data, setData }) {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center", marginBottom: "0.25rem" }}>DISTANCE (km)</div>
-                    <input
-                      style={S.inputSmall}
-                      type="number"
-                      placeholder={suggestion ? suggestion.distance : "0"}
+                    <RollingSelector
                       value={ex.distance}
-                      onChange={e => {
+                      step={0.5}
+                      placeholder={suggestion ? String(suggestion.distance) : "0"}
+                      onChange={val => {
                         const next = { ...data };
                         const s = { ...next.activeSession };
-                        s.exercises = s.exercises.map((x, i) => i !== ei ? x : { ...x, distance: e.target.value });
+                        s.exercises = s.exercises.map((x, i) => i !== ei ? x : { ...x, distance: val });
                         next.activeSession = s;
                         setData(next); saveData(next);
                       }}
@@ -738,21 +822,19 @@ function LogTab({ data, setData }) {
                   <div />
                 </div>
                 {ex.sets.map((set, si) => (
-                  <div key={si} style={{ display: "grid", gridTemplateColumns: "2rem 1fr 1fr 2rem", gap: "0.375rem", alignItems: "center", marginBottom: "0.375rem" }}>
+                  <div key={si} style={{ display: "grid", gridTemplateColumns: "2rem 1fr 1fr 2rem", gap: "0.375rem", alignItems: "center", marginBottom: "0.5rem" }}>
                     <div style={{ fontSize: "0.75rem", color: "#444", textAlign: "center" }}>{si + 1}</div>
-                    <input
-                      style={S.inputSmall}
-                      type="number"
-                      placeholder={suggestion ? suggestion.weight : "0"}
+                    <RollingSelector
                       value={set.weight}
-                      onChange={e => updateSet(ei, si, "weight", e.target.value)}
+                      step={2.5}
+                      placeholder={suggestion ? String(suggestion.weight) : "0"}
+                      onChange={val => updateSet(ei, si, "weight", val)}
                     />
-                    <input
-                      style={S.inputSmall}
-                      type="number"
-                      placeholder={suggestion ? suggestion.reps : "0"}
+                    <RollingSelector
                       value={set.reps}
-                      onChange={e => updateSet(ei, si, "reps", e.target.value)}
+                      step={1}
+                      placeholder={suggestion ? String(suggestion.reps) : "0"}
+                      onChange={val => updateSet(ei, si, "reps", val)}
                     />
                     <button
                       style={{ ...S.btnDanger, padding: "0.375rem 0.5rem", fontSize: "0.85rem", lineHeight: 1 }}
@@ -888,14 +970,23 @@ const FONT_SIZES = [1, 1.5, 2];
 const FONT_SIZE_KEY = "sgt_fontsize";
 
 export default function App() {
-  const [data, setData] = useState(() => loadData() || DEFAULT_DATA);
+  const [data, setData] = useState(null); // null = loading
   const [tab, setTab] = useState("workouts");
-  const [activeSession, setActiveSession] = useState(data.activeSession || null);
+  const [activeSession, setActiveSession] = useState(null);
   const [fontIdx, setFontIdx] = useState(() => {
     try { return parseInt(localStorage.getItem(FONT_SIZE_KEY) || "0"); } catch { return 0; }
   });
 
   const scale = FONT_SIZES[fontIdx] || 1;
+
+  // Load from IndexedDB on mount
+  useEffect(() => {
+    loadData().then(saved => {
+      const d = saved || DEFAULT_DATA;
+      setData(d);
+      if (d.activeSession) setActiveSession(d.activeSession);
+    });
+  }, []);
 
   // Apply scale to html root so every element in the page inherits it
   useEffect(() => {
@@ -914,10 +1005,14 @@ export default function App() {
     try { localStorage.setItem(FONT_SIZE_KEY, String(next)); } catch {}
   }
 
-  // Badge on log tab if there's an active session
-  useEffect(() => {
-    if (data.activeSession) setActiveSession(data.activeSession);
-  }, []);
+  // Show loading screen while IndexedDB loads
+  if (!data) {
+    return (
+      <div style={{ ...S.app, display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <div style={{ color: "#333", fontSize: "0.8rem", letterSpacing: "0.2em" }}>LOADING...</div>
+      </div>
+    );
+  }
 
   return (
     <div style={S.app}>
