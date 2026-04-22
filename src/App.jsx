@@ -89,8 +89,8 @@ const S = {
   app: {
     fontFamily: "'DM Mono', 'Courier New', monospace",
     fontSize: "1rem",
-    background: "#0a0a0a",
-    color: "#e8e0d0",
+    background: "#f5f4f0",
+    color: "#1a1a1a",
     minHeight: "100vh",
     maxWidth: 430,
     margin: "0 auto",
@@ -99,8 +99,8 @@ const S = {
   },
   header: {
     padding: "1.25rem 1.25rem 0",
-    borderBottom: "2px solid #1e1e1e",
-    background: "#0a0a0a",
+    borderBottom: "2px solid #e0ddd8",
+    background: "#f5f4f0",
     position: "sticky",
     top: 0,
     zIndex: 100,
@@ -109,7 +109,7 @@ const S = {
     fontSize: "1.25rem",
     fontWeight: 700,
     letterSpacing: "0.15em",
-    color: "#e8e0d0",
+    color: "#1a1a1a",
     display: "flex",
     alignItems: "center",
     gap: "0.5rem",
@@ -126,7 +126,7 @@ const S = {
     background: "none",
     border: "none",
     borderBottom: active ? "3px solid #ff4d1c" : "3px solid transparent",
-    color: active ? "#ff4d1c" : "#555",
+    color: active ? "#ff4d1c" : "#999",
     fontSize: "0.7rem",
     fontFamily: "inherit",
     fontWeight: 700,
@@ -136,21 +136,21 @@ const S = {
     textTransform: "uppercase",
   }),
   screen: {
-    padding: "1.25rem 1.25rem 6rem",
+    padding: "1.25rem 1.25rem calc(6rem + env(safe-area-inset-bottom, 0px))",
     minHeight: "calc(100vh - 100px)",
   },
   sectionTitle: {
     fontSize: "0.7rem",
     fontWeight: 700,
     letterSpacing: "0.2em",
-    color: "#555",
+    color: "#aaa",
     textTransform: "uppercase",
     marginBottom: "0.75rem",
     marginTop: "1.5rem",
   },
   card: {
-    background: "#111",
-    border: "1px solid #1e1e1e",
+    background: "#fff",
+    border: "1px solid #e0ddd8",
     borderRadius: 4,
     padding: "0.875rem 1rem",
     marginBottom: "0.5rem",
@@ -158,7 +158,7 @@ const S = {
     transition: "border-color 0.15s",
   },
   cardActive: {
-    background: "#111",
+    background: "#fff",
     border: "1px solid #ff4d1c",
     borderRadius: 4,
     padding: "0.875rem 1rem",
@@ -166,7 +166,7 @@ const S = {
     cursor: "pointer",
   },
   cardTitle: { fontSize: "1rem", fontWeight: 700, letterSpacing: "0.05em", marginBottom: "0.125rem" },
-  cardSub: { fontSize: "0.7rem", color: "#555", letterSpacing: "0.05em" },
+  cardSub: { fontSize: "0.7rem", color: "#aaa", letterSpacing: "0.05em" },
   btn: {
     background: "#ff4d1c",
     color: "#fff",
@@ -183,8 +183,8 @@ const S = {
   },
   btnGhost: {
     background: "none",
-    color: "#e8e0d0",
-    border: "1px solid #333",
+    color: "#1a1a1a",
+    border: "1px solid #ccc",
     borderRadius: 3,
     padding: "0.625rem 1rem",
     fontSize: "0.7rem",
@@ -196,8 +196,8 @@ const S = {
   },
   btnDanger: {
     background: "none",
-    color: "#555",
-    border: "1px solid #222",
+    color: "#aaa",
+    border: "1px solid #ddd",
     borderRadius: 3,
     padding: "0.375rem 0.75rem",
     fontSize: "0.65rem",
@@ -207,10 +207,10 @@ const S = {
     cursor: "pointer",
   },
   input: {
-    background: "#111",
-    border: "1px solid #2a2a2a",
+    background: "#fff",
+    border: "1px solid #ddd",
     borderRadius: 3,
-    color: "#e8e0d0",
+    color: "#1a1a1a",
     padding: "0.625rem 0.75rem",
     fontSize: "0.9rem",
     fontFamily: "inherit",
@@ -219,10 +219,10 @@ const S = {
     outline: "none",
   },
   inputSmall: {
-    background: "#111",
-    border: "1px solid #2a2a2a",
+    background: "#fff",
+    border: "1px solid #ddd",
     borderRadius: 3,
-    color: "#e8e0d0",
+    color: "#1a1a1a",
     padding: "0.5rem 0.625rem",
     fontSize: "0.85rem",
     fontFamily: "inherit",
@@ -233,19 +233,19 @@ const S = {
   },
   tag: {
     display: "inline-block",
-    background: "#1a1a1a",
-    border: "1px solid #2a2a2a",
+    background: "#ece9e4",
+    border: "1px solid #ddd",
     borderRadius: 2,
     padding: "0.2rem 0.5rem",
     fontSize: "0.65rem",
-    color: "#777",
+    color: "#888",
     letterSpacing: "0.08em",
     marginRight: "0.25rem",
     marginBottom: "0.25rem",
   },
   tagAccent: {
     display: "inline-block",
-    background: "#1a0a05",
+    background: "#fff2ee",
     border: "1px solid #ff4d1c44",
     borderRadius: 2,
     padding: "0.2rem 0.5rem",
@@ -256,12 +256,12 @@ const S = {
     marginBottom: "0.25rem",
   },
   suggestion: {
-    background: "#0d1a0d",
-    border: "1px solid #1a4a1a",
+    background: "#f0faf0",
+    border: "1px solid #c8e6c9",
     borderRadius: 3,
     padding: "0.375rem 0.625rem",
     fontSize: "0.65rem",
-    color: "#4caf50",
+    color: "#2e7d32",
     letterSpacing: "0.05em",
     marginBottom: "0.25rem",
   },
@@ -280,21 +280,21 @@ const S = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: "0 4px 24px #ff4d1c44",
+    boxShadow: "0 4px 20px #ff4d1c33",
     zIndex: 50,
   },
   modal: {
     position: "fixed",
     inset: 0,
-    background: "#000000cc",
+    background: "#00000055",
     zIndex: 200,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
   },
   modalContent: {
-    background: "#0f0f0f",
-    border: "1px solid #1e1e1e",
+    background: "#f5f4f0",
+    border: "1px solid #e0ddd8",
     borderRadius: "6px 6px 0 0",
     padding: "1.5rem 1.25rem 2.5rem",
     maxHeight: "90vh",
@@ -306,10 +306,10 @@ const S = {
     letterSpacing: "0.12em",
     textTransform: "uppercase",
     marginBottom: "1.25rem",
-    color: "#e8e0d0",
+    color: "#1a1a1a",
   },
   row: { display: "flex", gap: "0.5rem", alignItems: "center" },
-  divider: { borderColor: "#1e1e1e", margin: "1rem 0" },
+  divider: { borderColor: "#e0ddd8", margin: "1rem 0" },
   badge: {
     background: "#ff4d1c22",
     color: "#ff4d1c",
@@ -362,7 +362,7 @@ function RollingSelector({ value, onChange, step = 1, min = 0, placeholder = "0"
         userSelect: "none", WebkitUserSelect: "none", touchAction: "none",
       }}
     >
-      <div onClick={increment} style={{ color: "#3a3a3a", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▲</div>
+      <div onClick={increment} style={{ color: "#bbb", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▲</div>
       <div style={{ fontSize: "0.7rem", fontWeight: 700, fontFamily: "inherit", color: "#2a2a2a", lineHeight: 1, padding: "0.1rem 0", minHeight: "0.9rem", textAlign: "center" }}>
         {prevVal !== null ? prevVal : ""}
       </div>
@@ -370,7 +370,7 @@ function RollingSelector({ value, onChange, step = 1, min = 0, placeholder = "0"
         style={{
           background: "#1a1a1a", border: "1px solid #ff4d1c55", borderRadius: 3,
           padding: "0.4rem 0.5rem", fontSize: "1rem", fontWeight: 700, fontFamily: "inherit",
-          color: hasValue ? "#e8e0d0" : "#333", minWidth: "3rem", textAlign: "center", lineHeight: 1.2,
+          color: hasValue ? "#1a1a1a" : "#ccc", minWidth: "3rem", textAlign: "center", lineHeight: 1.2,
         }}
       >
         {hasValue ? num : placeholder}
@@ -378,8 +378,47 @@ function RollingSelector({ value, onChange, step = 1, min = 0, placeholder = "0"
       <div style={{ fontSize: "0.7rem", fontWeight: 700, fontFamily: "inherit", color: "#2a2a2a", lineHeight: 1, padding: "0.1rem 0", minHeight: "0.9rem", textAlign: "center" }}>
         {nextVal !== null ? nextVal : ""}
       </div>
-      <div onClick={decrement} style={{ color: "#3a3a3a", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▼</div>
+      <div onClick={decrement} style={{ color: "#bbb", fontSize: "0.65rem", padding: "0.15rem 1rem", cursor: "pointer", lineHeight: 1 }}>▼</div>
     </div>
+  );
+}
+
+// ─── ConfirmDelete ──────────────────────────────────────────────────────────────────────────────
+// Renders a Del button. On first tap shows "Sure? Yes / No" inline.
+function ConfirmDelete({ onConfirm, label = "Del", style: extraStyle = {} }) {
+  const [confirming, setConfirming] = useState(false);
+  if (confirming) {
+    return (
+      <div style={{ display: "flex", gap: "0.25rem", alignItems: "center" }}>
+        <span style={{ fontSize: "0.6rem", color: "#888", whiteSpace: "nowrap" }}>Sure?</span>
+        <button
+          style={{
+            background: "#ff4d1c", color: "#fff", border: "none", borderRadius: 3,
+            padding: "0.3rem 0.6rem", fontSize: "0.65rem", fontFamily: "inherit",
+            fontWeight: 700, cursor: "pointer", letterSpacing: "0.05em",
+          }}
+          onClick={e => { e.stopPropagation(); onConfirm(); }}
+        >Yes</button>
+        <button
+          style={{
+            background: "none", color: "#888", border: "1px solid #333", borderRadius: 3,
+            padding: "0.3rem 0.6rem", fontSize: "0.65rem", fontFamily: "inherit",
+            fontWeight: 700, cursor: "pointer",
+          }}
+          onClick={e => { e.stopPropagation(); setConfirming(false); }}
+        >No</button>
+      </div>
+    );
+  }
+  return (
+    <button
+      style={{
+        background: "none", color: "#555", border: "1px solid #222", borderRadius: 3,
+        padding: "0.375rem 0.75rem", fontSize: "0.65rem", fontFamily: "inherit",
+        fontWeight: 700, letterSpacing: "0.1em", cursor: "pointer", ...extraStyle,
+      }}
+      onClick={e => { e.stopPropagation(); setConfirming(true); }}
+    >{label}</button>
   );
 }
 
@@ -431,7 +470,7 @@ function ExercisePicker({ selected, onToggle, onDone, customExercises, onAddCust
           {["exercises","cardio"].map(t => (
             <button key={t} onClick={() => { setPickerTab(t); setSearch(""); setCreating(false); }} style={{
               flex: 1, padding: "0.5rem", background: pickerTab === t ? "#ff4d1c" : "none",
-              border: "none", color: pickerTab === t ? "#fff" : "#555",
+              border: "none", color: pickerTab === t ? "#fff" : "#aaa",
               fontFamily: "inherit", fontWeight: 700, fontSize: "0.7rem",
               letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer",
             }}>{t === "exercises" ? "⚡ Weights" : "🏃 Cardio"}</button>
@@ -469,7 +508,7 @@ function ExercisePicker({ selected, onToggle, onDone, customExercises, onAddCust
 
         <div style={{ maxHeight: "18rem", overflowY: "auto" }}>
           {filtered.length === 0 && (
-            <div style={{ color: "#444", fontSize: "0.75rem", textAlign: "center", padding: "1.25rem 0" }}>
+            <div style={{ color: "#bbb", fontSize: "0.75rem", textAlign: "center", padding: "1.25rem 0" }}>
               No results. Create one above.
             </div>
           )}
@@ -479,8 +518,8 @@ function ExercisePicker({ selected, onToggle, onDone, customExercises, onAddCust
             return (
               <div key={name} style={{
                 padding: "0.7rem 0.875rem", marginBottom: "0.25rem", borderRadius: 3,
-                background: active ? (isCardioTab ? "#0a1a0a" : "#1a0a05") : "#141414",
-                border: active ? `1px solid ${isCardioTab ? "#4caf5044" : "#ff4d1c44"}` : "1px solid #1e1e1e",
+                background: active ? (isCardioTab ? "#f0faf0" : "#fff2ee") : "#fff",
+                border: active ? `1px solid ${isCardioTab ? "#a5d6a7" : "#ff4d1c88"}` : "1px solid #e0ddd8",
                 cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center",
                 fontSize: "0.85rem",
               }}>
@@ -499,10 +538,7 @@ function ExercisePicker({ selected, onToggle, onDone, customExercises, onAddCust
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   {active && <span style={{ color: isCardioTab ? "#4caf50" : "#ff4d1c", fontSize: "1rem" }}>✓</span>}
                   {custom && (
-                    <button
-                      style={{ ...S.btnDanger, padding: "0.2rem 0.45rem", fontSize: "0.7rem" }}
-                      onClick={e => { e.stopPropagation(); onDeleteCustom(isCardioTab ? cardioKey(name) : name); }}
-                    >✕</button>
+                    <ConfirmDelete label="✕" onConfirm={() => onDeleteCustom(isCardioTab ? cardioKey(name) : name)} style={{ padding: "0.2rem 0.45rem", fontSize: "0.7rem" }} />
                   )}
                 </div>
               </div>
@@ -558,7 +594,7 @@ function WorkoutsTab({ data, setData, setActiveSession, setTab }) {
         const name = isCardio ? key.replace("__cardio__", "") : key;
         return isCardio
           ? { name, type: "cardio", duration: "", distance: "" }
-          : { name, sets: [{ weight: "", reps: "" }] };
+          : { name, sets: [{ id: uid(), weight: "", reps: "" }] };
       }),
       startedAt: Date.now(),
       finished: false,
@@ -573,7 +609,7 @@ function WorkoutsTab({ data, setData, setActiveSession, setTab }) {
     <div style={S.screen}>
       <div style={S.sectionTitle}>My Workouts</div>
       {data.workouts.length === 0 && (
-        <div style={{ color: "#333", fontSize: "0.85rem", textAlign: "center", padding: "2.5rem 0" }}>
+        <div style={{ color: "#bbb", fontSize: "0.85rem", textAlign: "center", padding: "2.5rem 0" }}>
           No workouts yet.<br />Hit + to build your first.
         </div>
       )}
@@ -593,7 +629,7 @@ function WorkoutsTab({ data, setData, setActiveSession, setTab }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginLeft: 10 }}>
               <button style={S.btn} onClick={() => startWorkout(w)}>Start</button>
               <button style={S.btnGhost} onClick={() => openEdit(w)}>Edit</button>
-              <button style={S.btnDanger} onClick={() => deleteWorkout(w.id)}>Del</button>
+              <ConfirmDelete onConfirm={() => deleteWorkout(w.id)} />
             </div>
           </div>
         </div>
@@ -614,7 +650,7 @@ function WorkoutsTab({ data, setData, setActiveSession, setTab }) {
             <div style={S.sectionTitle}>Exercises</div>
             <div style={{ marginBottom: 8 }}>
               {selectedEx.map(e => <span key={e} style={S.tagAccent}>{e} ×</span>)}
-              {selectedEx.length === 0 && <span style={{ color: "#333", fontSize: "0.75rem" }}>None selected</span>}
+              {selectedEx.length === 0 && <span style={{ color: "#bbb", fontSize: "0.75rem" }}>None selected</span>}
             </div>
             <button style={{ ...S.btnGhost, width: "100%", marginBottom: 16 }} onClick={() => setPicking(true)}>
               + Choose Exercises
@@ -658,7 +694,7 @@ function LogTab({ data, setData }) {
     return (
       <div style={{ ...S.screen, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 400 }}>
         <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🏋️</div>
-        <div style={{ color: "#333", fontSize: "0.85rem", textAlign: "center" }}>
+        <div style={{ color: "#bbb", fontSize: "0.85rem", textAlign: "center" }}>
           No active session.<br />Start a workout from the Workouts tab.
         </div>
       </div>
@@ -684,7 +720,7 @@ function LogTab({ data, setData }) {
     s.exercises = s.exercises.map((ex, ei) => {
       if (ei !== exIdx) return ex;
       const prevWeight = ex.sets.length > 0 ? ex.sets[ex.sets.length - 1].weight : "";
-      return { ...ex, sets: [...ex.sets, { weight: prevWeight, reps: "" }] };
+      return { ...ex, sets: [...ex.sets, { id: uid(), weight: prevWeight, reps: "" }] };
     });
     next.activeSession = s;
     setData(next); saveData(next);
@@ -729,7 +765,7 @@ function LogTab({ data, setData }) {
         const name = isCardio ? key.replace("__cardio__", "") : key;
         return isCardio
           ? { name, type: "cardio", duration: "", distance: "", addedMidSession: true }
-          : { name, sets: [{ weight: "", reps: "" }], addedMidSession: true };
+          : { name, sets: [{ id: uid(), weight: "", reps: "" }], addedMidSession: true };
       }),
     ];
     next.activeSession = s;
@@ -744,7 +780,7 @@ function LogTab({ data, setData }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
         <div>
           <div style={{ fontSize: "1.125rem", fontWeight: 700, letterSpacing: "0.08em" }}>{session.workoutName}</div>
-          <div style={{ fontSize: "0.7rem", color: "#555", marginTop: "0.125rem" }}>{session.date} · {elapsed}m elapsed</div>
+          <div style={{ fontSize: "0.7rem", color: "#aaa", marginTop: "0.125rem" }}>{session.date} · {elapsed}m elapsed</div>
         </div>
         <button style={{ ...S.btn, fontSize: "0.7rem" }} onClick={finishSession}>Finish</button>
       </div>
@@ -758,11 +794,11 @@ function LogTab({ data, setData }) {
           <div key={ei} style={{ marginBottom: "1.25rem" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
               <span style={{ fontSize: "0.75rem" }}>{isCardio ? "🏃" : "⚡"}</span>
-              <div style={{ fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.06em" }}>{ex.name}</div>
+              <div style={{ fontWeight: 700, fontSize: "1.8rem", letterSpacing: "0.03em", lineHeight: 1.1 }}>{ex.name}</div>
               {ex.addedMidSession && (
                 <span style={{
-                  fontSize: "0.6rem", letterSpacing: "0.1em", color: "#4caf50",
-                  background: "#0d1a0d", border: "1px solid #1a4a1a",
+                  fontSize: "0.6rem", letterSpacing: "0.1em", color: "#2e7d32",
+                  background: "#f0faf0", border: "1px solid #c8e6c9",
                   borderRadius: 2, padding: "1px 5px"
                 }}>+ ADDED</span>
               )}
@@ -777,7 +813,7 @@ function LogTab({ data, setData }) {
                 )}
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "0.25rem" }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center", marginBottom: "0.25rem" }}>DURATION (min)</div>
+                    <div style={{ fontSize: "0.65rem", color: "#bbb", textAlign: "center", marginBottom: "0.25rem" }}>DURATION (min)</div>
                     <RollingSelector
                       value={ex.duration}
                       step={5}
@@ -792,7 +828,7 @@ function LogTab({ data, setData }) {
                     />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center", marginBottom: "0.25rem" }}>DISTANCE (km)</div>
+                    <div style={{ fontSize: "0.65rem", color: "#bbb", textAlign: "center", marginBottom: "0.25rem" }}>DISTANCE (km)</div>
                     <RollingSelector
                       value={ex.distance}
                       step={0.5}
@@ -815,36 +851,58 @@ function LogTab({ data, setData }) {
                     ↑ Last: {suggestion.weight}kg × {suggestion.reps}r — {suggestion.date}
                   </div>
                 )}
-                <div style={{ display: "grid", gridTemplateColumns: "2rem 1fr 1fr 2rem", gap: "0.375rem", alignItems: "center", marginBottom: "0.25rem" }}>
-                  <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center" }}>#</div>
-                  <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center" }}>KG</div>
-                  <div style={{ fontSize: "0.65rem", color: "#444", textAlign: "center" }}>REPS</div>
-                  <div />
+                <div>
+                  {ex.sets.map((set, si) => (
+                    <div key={set.id || si} style={{
+                      background: "#fff", border: "2px solid #e0ddd8", borderRadius: 10,
+                      padding: "1.25rem 1.25rem 1rem", marginBottom: "1rem",
+                    }}>
+                      {/* Set header */}
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+                        <span style={{ fontSize: "1.25rem", fontWeight: 700, color: "#aaa", letterSpacing: "0.1em" }}>SET {si + 1}</span>
+                        <ConfirmDelete label="Remove" onConfirm={() => removeSet(ei, si)} />
+                      </div>
+
+                      {/* Weight row */}
+                      <div style={{ marginBottom: "1.25rem" }}>
+                        <div style={{ fontSize: "0.75rem", color: "#aaa", letterSpacing: "0.15em", textAlign: "center", marginBottom: "0.75rem" }}>KILOGRAMS</div>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+                          <button
+                            onClick={() => updateSet(ei, si, "weight", String(Math.max(0, Math.round(((parseFloat(set.weight)||0) - 1) * 10) / 10)))}
+                            style={{ width: "5rem", height: "5rem", fontSize: "2.5rem", fontWeight: 700, background: "#f5f4f0", border: "2px solid #ddd", borderRadius: 8, cursor: "pointer", color: "#333", fontFamily: "inherit", lineHeight: 1 }}>−</button>
+                          <div style={{ minWidth: "6rem", textAlign: "center", fontSize: "3rem", fontWeight: 700, color: set.weight ? "#1a1a1a" : "#ccc", lineHeight: 1 }}>
+                            {set.weight || (suggestion ? suggestion.weight : "—")}
+                          </div>
+                          <button
+                            onClick={() => updateSet(ei, si, "weight", String(Math.round(((parseFloat(set.weight)||0) + 1) * 10) / 10))}
+                            style={{ width: "5rem", height: "5rem", fontSize: "2.5rem", fontWeight: 700, background: "#f5f4f0", border: "2px solid #ddd", borderRadius: 8, cursor: "pointer", color: "#333", fontFamily: "inherit", lineHeight: 1 }}>+</button>
+                        </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div style={{ borderTop: "1px solid #e8e5e0", marginBottom: "1.25rem" }} />
+
+                      {/* Reps row */}
+                      <div>
+                        <div style={{ fontSize: "0.75rem", color: "#aaa", letterSpacing: "0.15em", textAlign: "center", marginBottom: "0.75rem" }}>REPS</div>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+                          <button
+                            onClick={() => updateSet(ei, si, "reps", String(Math.max(0, (parseInt(set.reps)||0) - 1)))}
+                            style={{ width: "5rem", height: "5rem", fontSize: "2.5rem", fontWeight: 700, background: "#f5f4f0", border: "2px solid #ddd", borderRadius: 8, cursor: "pointer", color: "#333", fontFamily: "inherit", lineHeight: 1 }}>−</button>
+                          <div style={{ minWidth: "6rem", textAlign: "center", fontSize: "3rem", fontWeight: 700, color: set.reps ? "#1a1a1a" : "#ccc", lineHeight: 1 }}>
+                            {set.reps || (suggestion ? suggestion.reps : "—")}
+                          </div>
+                          <button
+                            onClick={() => updateSet(ei, si, "reps", String((parseInt(set.reps)||0) + 1))}
+                            style={{ width: "5rem", height: "5rem", fontSize: "2.5rem", fontWeight: 700, background: "#f5f4f0", border: "2px solid #ddd", borderRadius: 8, cursor: "pointer", color: "#333", fontFamily: "inherit", lineHeight: 1 }}>+</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <button style={{ ...S.btn, width: "100%", marginTop: "0.25rem", fontSize: "1rem", padding: "1.25rem" }} onClick={() => addSet(ei)}>
+                    + Add Set
+                  </button>
                 </div>
-                {ex.sets.map((set, si) => (
-                  <div key={si} style={{ display: "grid", gridTemplateColumns: "2rem 1fr 1fr 2rem", gap: "0.375rem", alignItems: "center", marginBottom: "0.5rem" }}>
-                    <div style={{ fontSize: "0.75rem", color: "#444", textAlign: "center" }}>{si + 1}</div>
-                    <RollingSelector
-                      value={set.weight}
-                      step={2.5}
-                      placeholder={suggestion ? String(suggestion.weight) : "0"}
-                      onChange={val => updateSet(ei, si, "weight", val)}
-                    />
-                    <RollingSelector
-                      value={set.reps}
-                      step={1}
-                      placeholder={suggestion ? String(suggestion.reps) : "0"}
-                      onChange={val => updateSet(ei, si, "reps", val)}
-                    />
-                    <button
-                      style={{ ...S.btnDanger, padding: "0.375rem 0.5rem", fontSize: "0.85rem", lineHeight: 1 }}
-                      onClick={() => removeSet(ei, si)}
-                    >×</button>
-                  </div>
-                ))}
-                <button style={{ ...S.btnGhost, fontSize: "0.65rem", marginTop: "0.25rem" }} onClick={() => addSet(ei)}>
-                  + Add Set
-                </button>
               </>
             )}
             <hr style={S.divider} />
@@ -894,7 +952,7 @@ function HistoryTab({ data, setData }) {
     return (
       <div style={{ ...S.screen, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 400 }}>
         <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📋</div>
-        <div style={{ color: "#333", fontSize: "0.85rem", textAlign: "center" }}>No history yet.<br />Complete a session to see it here.</div>
+        <div style={{ color: "#bbb", fontSize: "0.85rem", textAlign: "center" }}>No history yet.<br />Complete a session to see it here.</div>
       </div>
     );
   }
@@ -912,13 +970,13 @@ function HistoryTab({ data, setData }) {
               onClick={() => setExpanded(isOpen ? null : s.id)}>
               <div style={{ cursor: "pointer" }}>
                 <div style={S.cardTitle}>{s.workoutName}</div>
-                <div style={{ fontSize: "0.7rem", color: "#444", marginTop: "0.125rem" }}>
+                <div style={{ fontSize: "0.7rem", color: "#aaa", marginTop: "0.125rem" }}>
                   {s.date} · {s.exercises.length} exercises · {totalSets} sets{duration ? ` · ${duration}m` : ""}
                 </div>
               </div>
               <div style={{ display: "flex", gap: "0.375rem", alignItems: "center" }}>
-                <button style={{ ...S.btnDanger }} onClick={() => deleteSession(s.id)}>Del</button>
-                <span style={{ color: "#444", fontSize: "1rem", cursor: "pointer" }}>{isOpen ? "▲" : "▼"}</span>
+                <ConfirmDelete onConfirm={() => deleteSession(s.id)} />
+                <span style={{ color: "#bbb", fontSize: "1rem", cursor: "pointer" }}>{isOpen ? "▲" : "▼"}</span>
               </div>
             </div>
             {isOpen && (
@@ -936,8 +994,8 @@ function HistoryTab({ data, setData }) {
                       </div>
                     ) : (
                       ex.sets.map((set, si) => (
-                        <div key={si} style={{ display: "flex", gap: "0.75rem", fontSize: "0.75rem", color: "#888", marginBottom: "0.2rem" }}>
-                          <span style={{ color: "#444" }}>Set {si + 1}</span>
+                        <div key={si} style={{ display: "flex", gap: "0.75rem", fontSize: "0.75rem", color: "#999", marginBottom: "0.2rem" }}>
+                          <span style={{ color: "#bbb" }}>Set {si + 1}</span>
                           <span>{set.weight || "—"} kg</span>
                           <span>× {set.reps || "—"} reps</span>
                         </div>
@@ -954,6 +1012,212 @@ function HistoryTab({ data, setData }) {
   );
 }
 
+// ─── Progress Tab ───────────────────────────────────────────────────────────────────────────
+function ProgressTab({ data }) {
+  // Collect all unique exercise names from history
+  const exerciseNames = [];
+  const cardioNames = [];
+  (data.history || []).forEach(s => {
+    s.exercises.forEach(ex => {
+      const list = ex.type === "cardio" ? cardioNames : exerciseNames;
+      if (!list.includes(ex.name)) list.push(ex.name);
+    });
+  });
+  const allNames = [...exerciseNames, ...cardioNames];
+
+  const [selected, setSelected] = useState(allNames[0] || "");
+
+  // Rebuild if history changes
+  const currentSelected = allNames.includes(selected) ? selected : (allNames[0] || "");
+
+  const isCardio = cardioNames.includes(currentSelected);
+
+  // Build data points: for each session that has this exercise, get max weight (or duration)
+  const points = [];
+  const history = [...(data.history || [])].reverse(); // chronological
+  history.forEach(s => {
+    s.exercises.forEach(ex => {
+      if (ex.name !== currentSelected) return;
+      if (isCardio) {
+        const dur = parseFloat(ex.duration);
+        if (dur > 0) points.push({ date: s.date, value: dur, label: `${dur}m` });
+      } else {
+        const sets = (ex.sets || []).filter(st => st.weight);
+        if (sets.length === 0) return;
+        const maxW = Math.max(...sets.map(st => parseFloat(st.weight) || 0));
+        if (maxW > 0) points.push({ date: s.date, value: maxW, label: `${maxW}kg` });
+      }
+    });
+  });
+
+  if (allNames.length === 0) {
+    return (
+      <div style={{ ...S.screen, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 400 }}>
+        <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📈</div>
+        <div style={{ color: "#bbb", fontSize: "0.85rem", textAlign: "center" }}>No history yet.<br />Complete sessions to see progress.</div>
+      </div>
+    );
+  }
+
+  // SVG chart
+  const W = 340, H = 180, padL = 44, padR = 16, padT = 16, padB = 36;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+
+  const hasPoints = points.length > 1;
+  const minV = hasPoints ? Math.min(...points.map(p => p.value)) : 0;
+  const maxV = hasPoints ? Math.max(...points.map(p => p.value)) : 10;
+  const rangeV = maxV - minV || 1;
+
+  function xPos(i) { return padL + (i / (points.length - 1)) * chartW; }
+  function yPos(v) { return padT + chartH - ((v - minV) / rangeV) * chartH; }
+
+  // Y axis ticks
+  const yTicks = 4;
+  const yTickVals = Array.from({ length: yTicks + 1 }, (_, i) => minV + (rangeV / yTicks) * i);
+
+  // Path
+  const pathD = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xPos(i).toFixed(1)} ${yPos(p.value).toFixed(1)}`).join(" ");
+  // Fill area under line
+  const fillD = hasPoints
+    ? `${pathD} L ${xPos(points.length - 1).toFixed(1)} ${(padT + chartH).toFixed(1)} L ${padL} ${(padT + chartH).toFixed(1)} Z`
+    : "";
+
+  // X axis labels: show first, last, and maybe middle
+  const xLabelIdx = points.length <= 5
+    ? points.map((_, i) => i)
+    : [0, Math.floor((points.length - 1) / 2), points.length - 1];
+
+  const accent = isCardio ? "#4caf50" : "#ff4d1c";
+
+  // Personal best
+  const pb = hasPoints ? Math.max(...points.map(p => p.value)) : null;
+
+  return (
+    <div style={S.screen}>
+      <div style={S.sectionTitle}>Progress</div>
+
+      {/* Exercise selector */}
+      <div style={{ marginBottom: "1rem" }}>
+        <select
+          value={currentSelected}
+          onChange={e => setSelected(e.target.value)}
+          style={{
+            ...S.input,
+            appearance: "none", WebkitAppearance: "none",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center",
+            paddingRight: "2rem", cursor: "pointer",
+          }}
+        >
+          {exerciseNames.length > 0 && (
+            <optgroup label="⚡ Weights">
+              {exerciseNames.map(n => <option key={n} value={n}>{n}</option>)}
+            </optgroup>
+          )}
+          {cardioNames.length > 0 && (
+            <optgroup label="🏃 Cardio">
+              {cardioNames.map(n => <option key={n} value={n}>{n}</option>)}
+            </optgroup>
+          )}
+        </select>
+      </div>
+
+      {/* Stats row */}
+      {pb !== null && (
+        <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1rem" }}>
+          <div style={{ flex: 1, background: "#fff", border: "1px solid #e0ddd8", borderRadius: 4, padding: "0.75rem", textAlign: "center" }}>
+            <div style={{ fontSize: "0.6rem", color: "#aaa", letterSpacing: "0.15em", marginBottom: "0.25rem" }}>PERSONAL BEST</div>
+            <div style={{ fontSize: "1.1rem", fontWeight: 700, color: accent }}>{pb}{isCardio ? "m" : "kg"}</div>
+          </div>
+          <div style={{ flex: 1, background: "#fff", border: "1px solid #e0ddd8", borderRadius: 4, padding: "0.75rem", textAlign: "center" }}>
+            <div style={{ fontSize: "0.6rem", color: "#aaa", letterSpacing: "0.15em", marginBottom: "0.25rem" }}>SESSIONS</div>
+            <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#e8e0d0" }}>{points.length}</div>
+          </div>
+          <div style={{ flex: 1, background: "#fff", border: "1px solid #e0ddd8", borderRadius: 4, padding: "0.75rem", textAlign: "center" }}>
+            <div style={{ fontSize: "0.6rem", color: "#aaa", letterSpacing: "0.15em", marginBottom: "0.25rem" }}>LAST</div>
+            <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#e8e0d0" }}>{points[points.length - 1]?.value}{isCardio ? "m" : "kg"}</div>
+          </div>
+        </div>
+      )}
+
+      {/* Chart */}
+      <div style={{ background: "#fff", border: "1px solid #e0ddd8", borderRadius: 4, padding: "0.5rem 0.25rem 0.25rem", overflowX: "auto" }}>
+        {!hasPoints ? (
+          <div style={{ color: "#bbb", fontSize: "0.8rem", textAlign: "center", padding: "3rem 0" }}>
+            Need 2+ sessions to show chart
+          </div>
+        ) : (
+          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}>
+            {/* Grid lines */}
+            {yTickVals.map((v, i) => (
+              <g key={i}>
+                <line
+                  x1={padL} y1={yPos(v).toFixed(1)}
+                  x2={W - padR} y2={yPos(v).toFixed(1)}
+                  stroke="#e8e5e0" strokeWidth="1"
+                />
+                <text
+                  x={padL - 4} y={yPos(v) + 3}
+                  textAnchor="end" fontSize="9" fill="#bbb" fontFamily="monospace"
+                >
+                  {Number.isInteger(v) ? v : v.toFixed(1)}
+                </text>
+              </g>
+            ))}
+
+            {/* Fill area */}
+            <path d={fillD} fill={accent} fillOpacity="0.07" />
+
+            {/* Line */}
+            <path d={pathD} fill="none" stroke={accent} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+
+            {/* Data points */}
+            {points.map((p, i) => (
+              <g key={i}>
+                <circle cx={xPos(i).toFixed(1)} cy={yPos(p.value).toFixed(1)} r="3.5" fill={accent} />
+                {/* value label above point */}
+                <text
+                  x={xPos(i).toFixed(1)} y={(yPos(p.value) - 7).toFixed(1)}
+                  textAnchor="middle" fontSize="8" fill="#aaa" fontFamily="monospace"
+                >{p.label}</text>
+              </g>
+            ))}
+
+            {/* X axis date labels */}
+            {xLabelIdx.map(i => (
+              <text
+                key={i}
+                x={xPos(i).toFixed(1)}
+                y={H - padB + 14}
+                textAnchor="middle" fontSize="8" fill="#bbb" fontFamily="monospace"
+              >
+                {points[i].date.slice(5)} {/* MM-DD */}
+              </text>
+            ))}
+
+            {/* X axis line */}
+            <line x1={padL} y1={padT + chartH} x2={W - padR} y2={padT + chartH} stroke="#ddd" strokeWidth="1" />
+          </svg>
+        )}
+      </div>
+
+      {/* Session log for this exercise */}
+      {points.length > 0 && (
+        <>
+          <div style={{ ...S.sectionTitle, marginTop: "1.5rem" }}>Session Log</div>
+          {[...points].reverse().map((p, i) => (
+            <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid #eee", fontSize: "0.8rem" }}>
+              <span style={{ color: "#555" }}>{p.date}</span>
+              <span style={{ fontWeight: 700, color: accent }}>{p.label}</span>
+            </div>
+          ))}
+        </>
+      )}
+    </div>
+  );
+}
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 const DEFAULT_DATA = {
   workouts: [],
@@ -962,23 +1226,16 @@ const DEFAULT_DATA = {
   customExercises: [],
 };
 
-const TABS = ["workouts", "log", "history"];
-const TAB_LABELS = ["Workouts", "Active", "History"];
-const TAB_ICONS = ["⚡", "🔥", "📋"];
+const TABS = ["workouts", "log", "history", "progress"];
+const TAB_LABELS = ["Workouts", "Active", "History", "Progress"];
+const TAB_ICONS = ["⚡", "🔥", "📋", "📈"];
 
-const FONT_SIZES = [1, 1.5, 2];
-const FONT_SIZE_KEY = "sgt_fontsize";
+const FONT_SIZE_KEY = "sgt_giant";
 
 export default function App() {
   const [data, setData] = useState(null); // null = loading
   const [tab, setTab] = useState("workouts");
   const [activeSession, setActiveSession] = useState(null);
-  const [fontIdx, setFontIdx] = useState(() => {
-    try { return parseInt(localStorage.getItem(FONT_SIZE_KEY) || "0"); } catch { return 0; }
-  });
-
-  const scale = FONT_SIZES[fontIdx] || 1;
-
   // Load from IndexedDB on mount
   useEffect(() => {
     loadData().then(saved => {
@@ -988,28 +1245,11 @@ export default function App() {
     });
   }, []);
 
-  // Apply scale to html root so every element in the page inherits it
-  useEffect(() => {
-    document.documentElement.style.fontSize = `${scale * 20}px`;
-    return () => { document.documentElement.style.fontSize = ""; };
-  }, [scale]);
-
-  function decreaseFont() {
-    const next = Math.max(0, fontIdx - 1);
-    setFontIdx(next);
-    try { localStorage.setItem(FONT_SIZE_KEY, String(next)); } catch {}
-  }
-  function increaseFont() {
-    const next = Math.min(FONT_SIZES.length - 1, fontIdx + 1);
-    setFontIdx(next);
-    try { localStorage.setItem(FONT_SIZE_KEY, String(next)); } catch {}
-  }
-
   // Show loading screen while IndexedDB loads
   if (!data) {
     return (
       <div style={{ ...S.app, display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-        <div style={{ color: "#333", fontSize: "0.8rem", letterSpacing: "0.2em" }}>LOADING...</div>
+        <div style={{ color: "#bbb", fontSize: "0.8rem", letterSpacing: "0.2em" }}>LOADING...</div>
       </div>
     );
   }
@@ -1019,12 +1259,8 @@ export default function App() {
       {/* Google Font */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
-        * { box-sizing: border-box; }
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
-        ::-webkit-scrollbar { width: 4px; background: #111; }
-        ::-webkit-scrollbar-thumb { background: #222; }
-        body { margin: 0; background: #0a0a0a; }
+        ::-webkit-scrollbar { width: 4px; background: #f0ede8; }
+        ::-webkit-scrollbar-thumb { background: #ccc; }
       `}</style>
 
       {/* Header */}
@@ -1032,7 +1268,7 @@ export default function App() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={S.logo}>
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 2L4 7V17C4 23.5 9.5 29 16 30C22.5 29 28 23.5 28 17V7L16 2Z" fill="#1a1a1a" stroke="#ff4d1c" strokeWidth="1.5"/>
+              <path d="M16 2L4 7V17C4 23.5 9.5 29 16 30C22.5 29 28 23.5 28 17V7L16 2Z" fill="#fff" stroke="#ff4d1c" strokeWidth="1.5"/>
               <polyline points="9,13 16,9 23,13" fill="none" stroke="#ff4d1c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <polyline points="9,17 16,13 23,17" fill="none" stroke="#ff4d1c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <polyline points="9,21 16,17 23,21" fill="none" stroke="#ff4d1c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1042,60 +1278,13 @@ export default function App() {
                 <span>SGT</span>
                 {data.activeSession && <span style={S.badge}>LIVE</span>}
               </div>
-              <div style={{ fontSize: "0.55rem", fontWeight: 400, letterSpacing: "0.18em", color: "#444", marginTop: "0.1rem" }}>
+              <div style={{ fontSize: "0.55rem", fontWeight: 400, letterSpacing: "0.18em", color: "#aaa", marginTop: "0.1rem" }}>
                 SIMPLE GYM TRACKER
               </div>
             </div>
           </div>
 
-          {/* Font size controls */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
-            <button
-              onClick={decreaseFont}
-              disabled={fontIdx === 0}
-              aria-label="Decrease font size"
-              style={{
-                background: "none",
-                border: "1px solid #2a2a2a",
-                borderRadius: 3,
-                color: fontIdx === 0 ? "#333" : "#888",
-                fontFamily: "inherit",
-                fontWeight: 700,
-                fontSize: "0.75rem",
-                width: "2rem",
-                height: "2rem",
-                cursor: fontIdx === 0 ? "default" : "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}
-            >A−</button>
-            <div style={{ display: "flex", gap: "0.2rem" }}>
-              {FONT_SIZES.map((_, i) => (
-                <div key={i} style={{
-                  width: "0.3rem", height: "0.3rem", borderRadius: "50%",
-                  background: i === fontIdx ? "#ff4d1c" : "#2a2a2a",
-                  transition: "background 0.15s",
-                }} />
-              ))}
-            </div>
-            <button
-              onClick={increaseFont}
-              disabled={fontIdx === FONT_SIZES.length - 1}
-              aria-label="Increase font size"
-              style={{
-                background: "none",
-                border: "1px solid #2a2a2a",
-                borderRadius: 3,
-                color: fontIdx === FONT_SIZES.length - 1 ? "#333" : "#e8e0d0",
-                fontFamily: "inherit",
-                fontWeight: 700,
-                fontSize: "0.85rem",
-                width: "2rem",
-                height: "2rem",
-                cursor: fontIdx === FONT_SIZES.length - 1 ? "default" : "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}
-            >A+</button>
-          </div>
+
         </div>
 
         <div style={S.nav}>
@@ -1113,6 +1302,7 @@ export default function App() {
       )}
       {tab === "log" && <LogTab data={data} setData={setData} />}
       {tab === "history" && <HistoryTab data={data} setData={setData} />}
+      {tab === "progress" && <ProgressTab data={data} />}
     </div>
   );
 }
